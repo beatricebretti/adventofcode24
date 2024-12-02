@@ -7,6 +7,21 @@
 
 using namespace std;
 
+int similarity(const vector<int>& left, const vector<int>& right);
+int distance(const vector<int>& left, const vector<int>& right);
+
+int main() {
+    ifstream inputFile("input.txt");
+    vector<int> left, right;
+    int a, b;
+
+    while (inputFile >> a >> b) {
+        left.push_back(a); right.push_back(b);
+    }
+    cout << distance(left, right) << endl; cout << similarity(left, right) << endl;
+    return 0;
+}
+
 int similarity(const vector<int>& left, const vector<int>& right) {
     unordered_map<int, int> counts;
     for (int num : right) { ++counts[num]; }
@@ -25,16 +40,4 @@ int distance(const vector<int>& left, const vector<int>& right) {
         total += abs(leftSorted[i] - rightSorted[i]);
     }
     return total;
-}
-
-int main() {
-    ifstream inputFile("input.txt");
-    vector<int> left, right;
-    int a, b;
-
-    while (inputFile >> a >> b) {
-        left.push_back(a); right.push_back(b);
-    }
-    cout << distance(left, right) << endl; cout << similarity(left, right) << endl;
-    return 0;
 }
